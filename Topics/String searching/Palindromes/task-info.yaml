@@ -1,0 +1,23 @@
+type: code
+files:
+- name: main.js
+  visible: true
+  text: |-
+    function isPalindrome(userStr) {
+        for (let letter = 0; letter < userStr.length / 2; letter++) {
+            if (userStr... !== userStr.charAt(...)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    console.log(isPalindrome("racecar"));
+    console.log(isPalindrome("javascript"));
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/17778#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Thu, 06 Oct 2022 20:47:01 UTC
+record: -1

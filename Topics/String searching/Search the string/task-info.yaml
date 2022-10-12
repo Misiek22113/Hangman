@@ -1,0 +1,23 @@
+type: code
+files:
+- name: main.js
+  visible: true
+  text: |-
+    function searchFruit(fruitOne, fruitTwo) {
+      let text = `My favorite fruit is grapes. Because with grapes, you always
+        get another chance. 'Cause, you know, if you have a crappy apple or a peach,
+        you're stuck with that crappy piece of fruit.
+        But if you have a crappy grape, no problem - just move on to the next.
+        'Grapes: The Fruit of Hope.'`;
+    }
+
+    let fruitOne = "apple";
+    let fruitTwo = "grapes";
+    // Call the function here with the arguments
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/17775#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Thu, 06 Oct 2022 20:44:06 UTC
+record: -1

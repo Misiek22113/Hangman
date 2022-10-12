@@ -1,0 +1,92 @@
+<h2>String searching</h2>
+<html>
+ <head></head>
+ <body>
+  <p>Strings in Javascript are as important and useful as, well, anything. It's not enough though to just know how to create them. There are a lot more ways of using them and definitely more operations that can be performed with a single string than you could imagine. In this topic, we'll take a look at all the ways of <strong>searching</strong> for something inside of a string. Fasten your seatbelt!</p> 
+  <h5 id="addressing-a-character" style="text-align: center;">Addressing a character</h5> 
+  <p>In some ways, strings behave like <strong>arrays</strong>. For example, inside of a string, each symbol has its own <strong>index</strong> — starting with 0, ending with the <strong>length of the string </strong>—<strong> 1</strong>. That means it's possible to get a symbol from a certain position in the string, and there are two ways to do that.</p> 
+  <p>The first one is to pretend, that our string is an array and do the following:</p> 
+  <pre><code class="language-javascript">let mystring = 'Sample text';
+console.log(mystring[0]); // S</code></pre> 
+  <p>But there is also a <code class="language-javascript">charAt(index)</code> method, where the <strong>index</strong> parameter is the index of the symbol you want to get. Here's how it works:</p> 
+  <pre><code class="language-javascript">let mystring = 'Sample text';
+console.log(mystring.charAt(0)); // S</code></pre> 
+  <p>No wonder that you'll get an<strong> 'S' </strong>symbol logged in the console as a result. It's as easy as that!</p> 
+  <p>Note, that if the index you pass to the method is out of bounds, an error is not gonna be thrown. Almighty Javascript will just return an empty string. It works both for indices that are too big and for negative indices.</p> 
+  <p>Also if you don't pass <strong>anything</strong> to the method, it will use a default value, which is <strong>0</strong>. So in this case you'll get the first symbol of the string:</p> 
+  <pre><code class="language-javascript">let mystring = 'Sample text';
+console.log(mystring.charAt()); // S
+console.log(mystring.charAt(-1)); // Empty string
+console.log(mystring.charAt(1000)); // Empty string</code></pre> 
+  <p>So, why do we need this method after all if we can just use square brackets? Because if you try to address an item with an index out of bounds, you'll get <code class="language-javascript">undefined</code>, while <code class="language-javascript">charAt</code> method is gonna give you an empty string. This difference is not huge, but sometimes that's all that matters.</p> 
+  <p> </p> 
+  <h5 id="what-does-this-string-end-with" style="text-align: center;">What does this string end with?</h5> 
+  <p>Next on the list are <code class="language-javascript">endsWith()</code> and <code class="language-javascript">startsWith()</code> methods. Let's use a real-life example this time.</p> 
+  <p>Imagine you need to count how many users signed up on the website with <strong>gmail.com</strong>, <strong>yahoo.com</strong>, and <strong>hotmail.com</strong> addresses. The first thing that comes to mind is to address several characters from the end of the string and then compare them to <strong>'google.com'</strong> and others. But this is not the best way to do it for obvious reasons.</p> 
+  <p>Instead, you should use <code class="language-javascript">endsWith()</code> method, which allows you to check whether the string <strong>ends</strong> with a certain substring or not. This method is considered a logical expression, so as a result it will return either <strong>true</strong> or <strong>false</strong>:</p> 
+  <pre><code class="language-javascript">let user_emails = ['hyperskill@gmail.com', 'jetbrains@yahoo.com'];
+let gmail_count = 0;
+
+user_emails.forEach(function(item) {
+    if (item.endsWith('gmail.com')) {
+        gmail_count = gmail_count + 1;
+    }
+});
+
+console.log(gmail_count); // 1</code></pre> 
+  <p>The <code class="language-javascript">startsWith()</code> method works just the same, returning <strong>true</strong> if the string starts with a certain substring, and <strong>false</strong> if it doesn't:</p> 
+  <pre><code class="language-javascript">let user_email = 'hyperskill@gmail.com';
+
+let result = user_email.startsWith('hyperskill');
+
+console.log(result); // true</code></pre> 
+  <p> </p> 
+  <p></p>
+  <div class="alert alert-primary">
+   Note, that this method is case-sensitive. Uppercase letters and the same lowercase letters are considered two different letters.
+  </div> 
+  <p> </p> 
+  <h5 id="finding-out-if-there-is-a-substring" style="text-align: center;">Finding out if there is a substring</h5> 
+  <p>Now we know how to check if a string <strong>starts</strong> or <strong>ends</strong> with a certain substring, but what if we want to know if a string just <strong>includes</strong> a substring, not necessarily in the beginning or in the end? For this case Javascript has <code class="language-javascript">includes()</code> method, which is also considered a logical expression and returns <strong>true</strong> if there <strong>is</strong> such a substring, or <strong>false</strong> if there's not:</p> 
+  <pre><code class="language-javascript">let mystring = 'Sample text';
+
+let result = mystring.includes('Sample');
+
+console.log(result); // true</code></pre> 
+  <p>The way this method works is obvious, but what's interesting about it is that it accepts another argument: the position at which to begin searching for a substring.</p> 
+  <pre><code class="language-javascript">let mystring = 'Sample text';
+
+let result = mystring.includes('Sample', 5);
+
+console.log(result); // false</code></pre> 
+  <p> </p> 
+  <p></p>
+  <div class="alert alert-primary">
+   Note, that this method is case-sensitive. Uppercase letters and the same lowercase letters are considered two different letters.
+  </div> 
+  <p> </p> 
+  <h5 id="finding-the-index-of-a-string" style="text-align: center;">Finding the index of a string</h5> 
+  <p>Slowly but surely we are getting to the last couple of methods, which are <code class="language-javascript">indexOf()</code> and <code class="language-javascript">lastIndexOf()</code>. The first one allows you not only to find out if there is a certain substring inside the string but also to get its <strong>location</strong> as an index of its first character within the string. Here's a quick example:</p> 
+  <pre><code class="language-javascript">let mystring = 'Sample text';
+console.log(mystring.indexOf('text')); // 7</code></pre> 
+  <p>Here it's also possible to define a position within the string which you want to start searching from:</p> 
+  <pre><code class="language-javascript">let mystring = 'text text text';
+console.log(mystring.indexOf('text', 2)); // 5</code></pre> 
+  <p>In this example, the first word will be ignored since the starting point is at the third symbol (index of 2). As you can see from this example, the method returns an index of the <strong>first</strong> symbol of the <strong>very first substring</strong>, so no matter how many times the substring occurs in the string, the method will only give you an index of its first appearance.</p> 
+  <p>The <code class="language-javascript">lastIndexOf()</code> method works similarly. As it's obvious from its name, it will return an index of the <strong>first</strong> symbol from the <strong>last substring appearance</strong>:</p> 
+  <pre><code class="language-javascript">let mystring = 'text text text';
+console.log(mystring.lastIndexOf('text')); // 10</code></pre> 
+  <p>In case the values are not found within a string, both methods will return <strong>-1</strong>.</p> 
+  <pre><code class="language-javascript">let mystring = 'text text text';
+console.log(mystring.indexOf('abc', 2)); // -1
+console.log(mystring.lastIndexOf('abc', 2)); // -1</code></pre> 
+  <p> </p> 
+  <p></p>
+  <div class="alert alert-primary">
+   Note, that this method is case-sensitive. Uppercase letters and the same lowercase letters are considered two different letters.
+  </div> 
+  <p> </p> 
+  <h5 id="summary" style="text-align: center;">Summary</h5> 
+  <p>Strings are a very powerful tool, and now you know how to control this power. All of the methods we've studied are pretty simple and logical, the only tricky thing is that almost all of them are case-sensitive, so don't forget about that! And remember that this is far from everything you can learn about strings. More things to come in the following topics!</p>
+ </body>
+</html>
